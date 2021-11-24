@@ -1,0 +1,740 @@
+@import url(//db.onlinewebfonts.com/c/6a17929c7360288d1242981da7712dc3?family=Torus+Notched);
+@import url(//db.onlinewebfonts.com/c/6aa06a9a432b8417171f60d8351aa310?family=Torus+Notched+SemiBold);
+
+/* ==================== BODY ==================== */ 
+/* on modifie le style du body donné par défaut  */
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* supprime les puces des listes */
+    text-decoration: none; /* supprime le soulignement des HREF */
+    font-family: "poppins";
+    scroll-behavior: smooth; /* définit le comportement du défilement */ 
+}
+
+h1, h2, h3, h4, h5, h6, p, button, sup {
+    font-family: "Torus Notched";
+    font-weight: 100; /* donner un valeur WEIGHT faible empêche certain navigateur d'appliquer une valeur par défaut */
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+body {
+    overflow-x: hidden; /* permet de définir l'action lorsque le contenu dépasse des bords de la DIV, HIDDEN = masquer */
+    max-width: 1700px; /*  largeur max de la page */
+}
+
+/* ==================== ACCUEIL ==================== */ 
+/* --------------------- TITRE --------------------- */
+
+.accueil-container .accueil-titre {
+    width: 1500px;
+    height: 100%;
+    margin: 0 auto; /* permet de centrer la DIV "accueil-container" automatiquement */
+    display: flex; /* va rendre les éléments dans la DIV flexibles via flex direction et justify-content */
+    flex-direction: column; /* indique la direction que les éléments vont prendre (en colonne) */
+    justify-content: center; /* on centre les éléments de la DIV sur flex-direction (colonne) axe des Y */
+}
+
+.accueil-titre h1 {
+    color: #31489f;
+    font-size: 7.5rem; /* 1 REM = 16px */
+    margin-bottom: 50px; /* va pousser le bouton vers le bas de 50px */
+}
+
+/* ------------- BOUTON "EN SAVOIR PLUS" ------------- */
+
+.accueil-titre button {
+    position: relative; /* relatif à son parent mais reste dans le flux */
+    width: 250px;
+    height: 60px;
+    border-radius: 50px;
+    border: 2px solid #31489f;
+    background-color: white;
+    font-size: 1.5rem;
+    color: #31489f;
+    z-index: 2;
+    transition: 0.4s;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* on vise le bouton à l'intérireur de accueil-titre */
+/* le point de départ de notre animation */
+.accueil-titre button::before {
+    content: "";
+    width: 260px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: #31489f;
+    position: absolute; /* relatif à son parent graçe à sa postion RELATIVE mais sort du flux */
+    top: -2px; /* peut être placé dans son parent */
+    left: -2px; /* peut être placé dans son parent */
+    
+    transform: translate(-100%); /* définit (par glissement) sa position au départ */
+    transition: 0.4s;
+    z-index: -1;
+}
+
+/* on modifie le texte du bouton au survol */
+.accueil-titre button:hover {
+    color: white;
+    width: 260px;
+}
+
+/* on vise le bouton contenu dans accueil-titre */ 
+/* on sélectionne le pseudo élément BEFORE au moment du HOVER */
+.accueil-titre button:hover::before {
+    transform: translate(0%); /* définit (par glissement) sa position à l'arrivée */
+}
+
+/* on vise la flèche du bouton */
+.accueil-titre button i {
+    transform: scale(0); /* on rend la flèche invisible */
+    margin: -15px;
+    transition: 0.2s;
+}
+
+/* la flèche du bouton au survol */
+.accueil-titre button:hover i {
+    margin-left: 15px;
+    transform: scale(1); /* on fait apparaître la flèche */
+}
+
+/* --------------------- HEADER --------------------- */
+
+header {
+    width: 100%;
+    height: 120px;
+    position: absolute; /* relatif à son parent BODY par défaut mais sort du flux, va rester fix */
+}
+
+header .header-container {
+    width: 1500px;
+    height: 100%;
+    margin: 0 auto; /* permet de centrer la DIV "header-container" automatiquement */
+    display: flex; /* va rendre les éléments dans la DIV flexibles via flex direction et align-items */
+    flex-direction: row; /* indique la direction que les éléments vont prendre (en ligne) */
+    align-items: center; /* pour center les éléments dans la DIV */
+    justify-content: space-between; 
+}
+
+header .header-container ul {
+    display: flex; /* aligner le texte */
+}
+
+/* on modifie les éléments de la liste */
+header .header-container ul a {
+    color: #66aefc;
+    font-family: "Torus Notched";
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 30px;
+}
+
+/* on masque header-logo-ghost */
+/* pour center header-menu entre les deux logos */
+header .header-logo-ghost {
+    opacity: 0;
+}
+
+/* ----------------- ANIMATION HEADER --------------- */
+
+.header-menu {
+    display: inline-block;
+}
+
+header .header-container ul a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    margin: 5px auto 0 auto;
+    background-color: #66aefc;
+    transition: width 0.2s ease-out;
+}
+
+header .header-container ul a:hover:after {
+    width: 65%;
+}
+
+/* ------------------ TRANSITION ------------------- */
+
+.transition {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    transform: translateY(-25%);
+    overflow-x: hidden;
+    z-index: 5;
+}
+
+.transition img {
+    width: 115%;
+}
+
+/* ==================== MISSION ==================== */ 
+/* -------------------- SECTION -------------------- */
+
+.mission {
+    position: relative;
+    z-index: 2;
+    background-color: #232323;
+    height: auto;
+    padding-top: 20px;
+}
+
+.mission-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --------------------- TITRE --------------------- */
+
+.mission-container .mission-title {
+    position: relative;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    width: 100%;
+    text-align: center;
+    color: #66aefc;
+    font-size: 3rem;
+}
+
+/* .mission-container .mission-title::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    top: 125%;
+    left: 50%;
+    transform: translate(-50%);
+} */
+
+/* -------------------- CONTENT -------------------- */
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mission-content-top, .mission-content-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* .mission-part-left, .misson-part-right {
+    max-width: 700px;
+} */
+
+.mission .content {
+    color: white;
+}
+
+.titre-section {
+    display: flex;
+    align-items: center;
+}
+
+.mission .puce {
+    width: 20px;
+    height: 20px;
+    background-color: #66aefc;
+    border-radius: 50px;
+    border: solid 3px #31489f;
+    margin-right: 20px;
+}
+
+.separation {
+    width: 80%;
+    height: 5px;
+    background-color: #66aefc;
+    border-radius: 0 50px 50px 0;
+    margin: 25px 0;
+}
+
+.mission p {
+    max-width: 600px;
+    line-break: anywhere;
+}
+
+/* =================== Á PROPOS ==================== */
+
+.propos {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    height: 1080px;
+    background-image: url(../svg/1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(5px 5px 10px black);
+    margin-top: -50px;
+}
+
+.propos h3 {
+    color: white;
+}
+
+.separation-bis {
+    width: 80%;
+    height: 5px;
+    background-color: #66aefc;
+    border-radius: 0 50px 50px 0;
+    margin: 25px 0;
+}
+
+.propos p {
+    color: white;
+    max-width: 600px;
+    line-break: anywhere;
+    margin-bottom: 40px;
+}
+
+section .propos-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* ------------- BOUTON "EN SAVOIR PLUS" ------------- */
+
+.propos-container button {
+    position: relative; /* relatif à son parent mais reste dans le flux */
+    width: 220px;
+    height: 50px;
+    border-radius: 50px;
+    border: 2px solid white;
+    background-color: #232323;
+    font-size: 1.5rem;
+    color: white;
+    z-index: 2;
+    transition: 0.4s;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* on vise le bouton à l'intérireur de accueil-titre */
+/* le point de départ de notre animation */
+.propos-container button::before {
+    content: "";
+    width: 260px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: white;
+    position: absolute; /* relatif à son parent graçe à sa postion RELATIVE mais sort du flux */
+    top: -2px; /* peut être placé dans son parent */
+    left: -2px; /* peut être placé dans son parent */
+    
+    transform: translate(-100%); /* définit (par glissement) sa position au départ */
+    transition: 0.4s;
+    z-index: -1;
+}
+
+/* on modifie le texte du bouton au survol */
+.propos-container button:hover {
+    color: #66aefc;
+    width: 260px;
+}
+
+/* on vise le bouton contenu dans accueil-titre */ 
+/* on sélectionne le pseudo élément BEFORE au moment du HOVER */
+.propos-container button:hover::before {
+    transform: translate(0%); /* définit (par glissement) sa position à l'arrivée */
+}
+
+/* on vise la flèche du bouton */
+.propos-container button i {
+    transform: scale(0); /* on rend la flèche invisible */
+    margin: -15px;
+    transition: 0.2s;
+}
+
+/* la flèche du bouton au survol */
+.propos-container button:hover i {
+    margin-left: 15px;
+    transform: scale(1); /* on fait apparaître la flèche */
+}
+
+/* =================== "FAIRE UN DON" ==================== */
+/* ---------------------- SECTION-4  --------------------- */
+
+.section-4 {
+    position: relative;
+    height: 750px;
+    background-image: url(../svg/2.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+    z-index: 2;
+    top: -2px;
+    filter: drop-shadow(3px 5px 4px #232323);
+}
+
+.section-4-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+}
+
+.section-4-left img {
+    margin: 0 220px 0 50px;
+}
+
+.section-4-mid h3 {
+    color: white;
+}
+
+.section-4-separation {
+    width: 100%;
+    height: 5px;
+    background-color: #66aefc;
+    border-radius: 0 50px 50px 0;
+    margin: 25px 0;
+}
+
+.section-4-mid p {
+    max-width: 400px;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.section-4-right {
+    position: absolute;
+    top: 25px;
+    left: 68%;
+}
+
+/* ------------- BOUTON "EN SAVOIR PLUS" ------------- */
+
+.section-4-mid button {
+    position: relative; /* relatif à son parent mais reste dans le flux */
+    width: 220px;
+    height: 50px;
+    border-radius: 50px;
+    border: 2px solid white;
+    background: none;
+    font-size: 1.5rem;
+    color: white;
+    z-index: 2;
+    transition: 0.4s;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* on vise le bouton à l'intérireur de accueil-titre */
+/* le point de départ de notre animation */
+.section-4-mid button::before {
+    content: "";
+    width: 260px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: white;
+    position: absolute; /* relatif à son parent graçe à sa postion RELATIVE mais sort du flux */
+    top: -2px; /* peut être placé dans son parent */
+    left: -2px; /* peut être placé dans son parent */
+    
+    transform: translate(-100%); /* définit (par glissement) sa position au départ */
+    transition: 0.4s;
+    z-index: -1;
+}
+
+/* on modifie le texte du bouton au survol */
+.section-4-mid button:hover {
+    color: #66aefc;
+    width: 260px;
+}
+
+/* on vise le bouton contenu dans accueil-titre */ 
+/* on sélectionne le pseudo élément BEFORE au moment du HOVER */
+.section-4-mid button:hover::before {
+    transform: translate(0%); /* définit (par glissement) sa position à l'arrivée */
+}
+
+/* on vise la flèche du bouton */
+.section-4-mid button i {
+    transform: scale(0); /* on rend la flèche invisible */
+    margin: -15px;
+    transition: 0.2s;
+}
+
+/* la flèche du bouton au survol */
+.section-4-mid button:hover i {
+    margin-left: 15px;
+    transform: scale(1); /* on fait apparaître la flèche */
+}
+
+/* ================================================= */
+
+/* ----------------- MEDIA QUERIES ----------------- */
+/* max-width = desktop-first */
+/* max-width (jusqu'à), si l'écran est inférieur ou égal alors {...} ce sera comme ceci */
+/* min-width = mobile-first */
+/* min-width (à partir), si l'écran est supérieur ou égal, alors {...} ce sera comme ceci */
+
+/* desktop max */
+@media (min-width : 1500px) {
+    .accueil-container {
+        height: 100vh; /* VW (largeur de la fenêtre), VH (hauteur de la fenêtre) */
+        width: 100%; /* à partir de 1500px la DIV prendra 100vh et occupera 100% de la largeur */
+        background-image: url(../image/13.png); 
+        background-repeat: no-repeat;
+        background-position: top right;
+    }
+
+    .accueil-background-responsive {
+        display: none; /* on rend le background-image pour tablette et smartphone invisible */
+    }
+}
+
+/* desktop */
+@media (max-width : 1500px) {
+    header {
+        position: relative;
+        background-color: #66aefc;
+    }
+
+    header .header-container {
+        width: 100%;
+    }
+
+    header .header-container ul a {
+        color: white;
+    }
+
+    header .header-logo {
+        margin-left: 4vh;
+    }
+
+    .accueil-container {
+        height: 100%;
+        margin-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    .accueil-container .accueil-titre {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .accueil-background-responsive {
+        margin-top: 50px;
+    }
+
+    .accueil-background-responsive img {
+        width: 600px;
+    }
+
+    .mission-content-top {
+        flex-direction: column;
+    }
+
+    .mission-content-bottom {
+        flex-direction: column-reverse;
+    }
+
+    .misson .mission-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mission-container .mission-title {
+        margin-bottom: 40px;
+    }
+
+    /* .content {
+        margin: 40px 0;
+    } */
+
+    .content img {
+        width: 90%;
+    }
+
+    .mission p {
+        max-width: 900px;
+        line-break: normal;
+        text-align: center;
+        margin: 0 50px;
+    }
+
+    .mission-container .titre-section {
+        justify-content: center;
+        flex-direction: column; 
+    }
+
+    .separation {
+        width: 50%;
+        border-radius: 50px;
+        margin: 25px auto;
+    }
+
+    .mission .puce {
+        margin-right: 0;
+    }
+
+    /* .mission-content-top .mission-part-left {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .mission-content-bottom .mission-part-right {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    } */
+
+    .mission-part-right, .mission-part-left {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .propos-part-right {
+        max-width: 450px;
+        align-items: center;
+    }
+
+    .section-4-right {
+        display: none;
+    }
+}
+
+@media (min-width : 1500px) {
+    .mission-part-left, .misson-part-right {
+        max-width: 700px;
+    }
+}
+
+@media (max-width : 1300px) {
+    .section-4-content {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+
+    .section-4-left {
+        margin: 0;
+    }
+
+    .section-4-left img {
+        width: 350px;
+    }
+
+    .section-4-mid {
+        text-align: center;
+    }
+
+    .section-4-mid p {
+        max-width: 500px;
+        margin: 40px auto;
+        color: #66aefc;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width : 1050px) {
+    .propos-content-top, .propos-part-right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .propos-part-left {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .separation-bis {
+        border-radius: 50px;
+    }
+
+    .propos p {
+        line-break: anywhere;
+        margin: 0 20px;
+    }
+
+    .propos button {
+        margin: 40px 0;
+    }
+
+    .propos-part-right img {
+        width: 80%;
+    }
+}
+
+/* tablette */
+@media (max-width : 950px) {
+    .accueil-container h1 {
+        font-size: 6rem;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width : 750px) {
+    header .header-logo {
+        display: none;
+    }
+
+    header .header-logo-ghost {
+        display: none;
+    }
+
+    header .header-container {
+        justify-content: center;
+    }
+
+    header .header-container ul a {
+        margin: 0 10px;
+    }
+
+    .accueil-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width : 700px) {
+   .accueil-background-responsive img {
+        width: 80%;
+    }
+
+    .accueil-container h1 {
+        font-size: 4rem;
+        margin-bottom: 50px;
+    }
+}
+
+/* smartphone */
+@media (max-width : 500px) {
+     .accueil-container h1 {
+        font-size: 3rem;
+    }
+}
